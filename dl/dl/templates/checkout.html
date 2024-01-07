@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Webcam Capture</title>
+</head>
+<body>
+
+<div id="video-container">
+    <video id="webcam-video" playsinline autoplay></video>
+</div>
+
+<button id="start-button" onclick="startWebcamCapture()">Start Webcam</button>
+
+<script>
+    function startWebcamCapture() {
+        const videoContainer = document.getElementById('video-container');
+        const webcamVideo = document.getElementById('webcam-video');
+
+        // Check if the browser supports getUserMedia
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    videoContainer.style.display = 'block';
+                    webcamVideo.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing webcam:', error);
+                });
+        } else {
+            alert('Your browser does not support webcam access.');
+        }
+    }
+</script>
+
+</body>
+</html>

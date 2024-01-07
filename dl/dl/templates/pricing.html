@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing{% endblock %}
+
+{% block content %}
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="row">
+                {% for plan in pricing_plans %}
+                    <div class="col-md-4">
+                        <div class="pricing-card">
+                            <h2>{{ plan['name'] }}</h2>
+                            <span class="price">{{ plan['price'] }}</span>
+                            <p>{{ plan['description'] }}</p>
+                            <p><strong>Credits:</strong> {{ plan['offer'] }} /mo</p>
+                            <p><strong>Duration:</strong> {{ plan['duration'] }}</p>
+
+                            <button class="cta-button">{% if plan['name'] == 'Free' %}Sign Up for Free{% else %}Buy{% endif %}</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional CSS Styles for Pricing Page -->
+    <style>
+        .pricing-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .pricing-card {
+            background-color: #ffffff;
+            color: #000000; /* Black text for cards */
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners for cards */
+            margin: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            border: 2px solid #dee2e6; /* Border for cards */
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            background-color: #eaf5ff; /* Blue background on hover */
+        }
+
+        .pricing-card h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #000000; /* Black font color for plan headings */
+            background-color: #f8f9fa; /* Background for plan headings */
+            padding: 10px; /* Padding for plan headings */
+            border-top: 2px solid #dee2e6; /* Line separating plans */
+            border-bottom: 2px solid #dee2e6; /* Line separating plans */
+            border-radius: 10px; /* Rounded corners for plan headings */
+        }
+
+        .pricing-card p {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #555555; /* Dark gray text for pricing details */
+        }
+
+        .pricing-card span.price {
+            color: #000000; /* Black font color for price */
+            font-weight: bold; /* Bold font for price */
+            font-size: 2em; /* Larger font size for price */
+            display: block;
+            margin-top: 10px;
+        }
+
+        .pricing-card button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pricing-card button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}
